@@ -1,0 +1,10 @@
+<% content_for :title do %>Display User Info<% end %>
+
+<ul>
+	<li>First Name: <%= @user.first_name %></li>
+	<li>Last Name: <%= @user.last_name %></li>
+	<li>Email: <%= @user.email %></li>
+	<li>ID: <%= @user.id %></li>
+</ul>
+
+<form action="/users/<%= @user.id %>/edit" method="get"><input type="submit" class="button success" value="Edit"></form>

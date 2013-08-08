@@ -1,44 +1,35 @@
 <% content_for :title do %>Add a new User<% end %>
 
-<h1>Users New</h1>
+<h1>New User</h1>
 
-<form action="/users" method="post">
-	<fieldset>
-		<legend>New Post</legend>
-		<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-		<div class="row">
-			<div class="large-6 columns">
-				<label class="left inline">First Name</label>
-				<input type="text" name="user[first_name]" placeholder="First Name">
-			</div>
-			<div class="large-6 columns">
-				<label class="left inline">Last Name</label>
-				<input type="text" name="user[last_name]" placeholder="Last Name">
-			</div>
-		</div>
+<fieldset>
+<%= simple_form_for @user do |f| %>
+	<div class="row">
+  	<div class="large-6 columns">
+  	<%= f.input :first_name, label_html: { class: 'large-3 columns inline'}, input_html: { class: 'large-9 columns'} %>
+  	</div>
+  	<div class="large-6 columns">
+	  	<%= f.input :last_name, label_html: { class: 'large-3 columns inline'}, input_html: { class: 'large-9 columns'}%>
+	  </div>
+  </div>
+  <div class="row">
+  	<div class="large-6 columns">
+  	<%= f.input :email, label_html: { class: 'large-3 columns inline'}, input_html: { class: 'large-9 columns'} %>
+  	</div>
+  	<div class="large-6 columns">
+	  	<%= f.input :password, label_html: { class: 'large-3 columns inline'}, input_html: { class: 'large-9 columns'}%>
+	  </div>	  
+  </div>
+  <%= f.button :submit %>
+<% end %>
+</fieldset>
 
-		<div class="row">
-			<div class="large-6 columns">
-				<label class="left inline">Email Address:</label>
-				<input type="text" name="user[email]" placeholder="Email Address">
-			</div>
-			<div class="large-6 columns">
-				<label class="left inline">Password</label>
-				<input type="text" name="user[password]" placeholder="Password">
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-12 columns">
-				<input type="submit" class="button" name="submit" value="Submit">
-			</div>
-		</div>
-	</fieldset>
-</form>
 
- <% if @new_user.errors.any? %>
+
+ <% if @user.errors.any? %>
     <div id="error_explanation">
       <ul>
-      <% @new_user.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

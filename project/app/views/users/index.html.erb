@@ -8,15 +8,21 @@
 			<th>First Name:</th>
 			<th>Last Name:</th>
 			<th>Email:</th>
+			<th>Action:</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @user_data.each do |user| %>
+		<% @user.each do |user_data| %>
 			<tr>
-				<td><%= user.id %></td>
-				<td><%= user.first_name %></td>
-				<td><%= user.last_name %></td>
-				<td><%= user.email %></td>
+				<td><%= user_data.id %></td>
+				<td><%= user_data.first_name %></td>
+				<td><%= user_data.last_name %></td>
+				<td><%= user_data.email %></td>
+				<td>
+					<%= link_to 'View', user_data, :class => "button tiny" %>
+				    <%= link_to 'Edit', edit_user_path(user_data), :class => "button success tiny" %>
+				    <%= link_to 'Delete', user_data, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button alert tiny"%>
+				</td>
 			</tr>
 		<% end %>
 	</tbody>
